@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="script.js"></script>
+<link href="style.css" rel="stylesheet" />
+<body>
+
+<div ng-app="myApp" ng-controller="DoubleController">
+ 
+    <table style="width:1000px">
+      <caption>Solar Cost Benefit Calculator</caption>
+      <tr>
+        <th>User Inputs</th>
+        <th>Outputs</th>
+      </tr>
+      <tr>
+        <td>
+          <label1 for="fname">Location:&nbsp;</label1>
+          <select ng-model="data.location">
+            <option value="Mumbai">Mumbai</option>
+            <option value="Pune">Pune</option>
+            <option value="Bangalore">Bangalore</option>
+          </select>
+        </td>
+        <td >
+          <label1 for="Solar System Size">Solar System Size&nbsp;(kW):</label1>
+          <input type="text" ng-model="data.solarSystemSize" ng-disabled="true" placeholder="Based on your consumption, but limited to what's possible on your roof (kW)">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label1 for="Roof size :">Roof Size:&nbsp;</label1>
+          <input type="text" ng-model="data.roofSize" placeholder="Sq ft">
+        </td>
+        <td>
+          <label1 for="Roof size :">Solar System Cost:&nbsp;</label1>
+          <input type="text" ng-disabled="true" ng-model="data.solarSystemCost" placeholder="Based on system size">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label1>Electricity units consumed / month&nbsp;</label1>
+          <input type="text" ng-model="data.unitConsumed" placeholder="User input based on electricity bill (kWH)">
+        </td>
+        <td>
+          <label1>Solar units produced / month:&nbsp;</label1>
+          <input type="text" ng-disabled="true" ng-model="data.solarUnitProduced" placeholder="based on system size & daily production">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label1>Loan Tenure - 5,6 or 7 years&nbsp;</label1>
+          <input type="text" ng-model="data.loanTenure" placeholder="User input based on electricity bill (kWH)">
+        </td>
+        <td>
+          <label1>Monthly savings on electricity bill:&nbsp;</label1>
+          <input type="text" ng-disabled="true" ng-model="data.monthlySavings" placeholder="based on daily solar production & tariff">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label1>Loan Amount&nbsp;</label1>
+          <input type="text" ng-model="data.loanAmount" placeholder="Max = 85% of Solar System Cost">
+          <span class="text-error" data-ng-show="showgraph===false">Invalid amount</span><br/>
+        </td>
+        <td>
+          <label1>EMI:&nbsp;</label1>
+          <input type="text" ng-disabled="true" ng-model="data.EMI" placeholder="Based on Loan amount, tenure & interest rate">
+        </td>
+      </tr>
+    </table><br><br>
+    <div ng-if ="showgraph" id="container">Placeholder for chart</div>
+
+</div>
+
+</body>
+</html>
