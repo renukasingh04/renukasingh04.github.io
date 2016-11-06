@@ -50,8 +50,10 @@ select {
     height: 20px;
 }
 
-input {
-    width: 150px;
+#input_img {
+    position:static;
+    width:15px;
+    height:15px;
 }
 
 .text-error
@@ -59,8 +61,3 @@ input {
   color: #f00;
   font-weight: bold;
 }
-
-
-
-
-
