@@ -1,0 +1,66 @@
+/* Put your css in here */
+tr {
+    width: 25%;
+    height:100%;
+}
+
+table {
+    background-color: #f7ffe6
+}
+
+td {
+    height: 50px;
+    vertical-align: bottom;
+}
+
+
+th {
+    height: 50px;
+    vertical-align: bottom;
+    text-align: left;
+    border: 10px;
+    font-size: 22px;
+    color:#00004d;
+}
+
+h1 {
+    background-color: #3CBC8D;
+    color: white;
+    width: 85%;
+}
+
+caption { 
+    display: table-caption;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color:#ff4000;
+    background-color: #00ff80;
+}
+
+label1 {
+    color: #006600;
+    font-weight: bold;
+}
+
+select {
+    font-size: 16px;
+    font-weight: normal;
+    width: 150px;
+    height: 20px;
+}
+
+input {
+    width: 150px;
+}
+
+.text-error
+{
+  color: #f00;
+  font-weight: bold;
+}
+
+
+
+
+
