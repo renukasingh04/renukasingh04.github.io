@@ -8,8 +8,8 @@
 <body>
 
 <div ng-app="myApp" ng-controller="DoubleController">
- 
-    <table style="width:1000px">
+ <form  name="myForm">
+    <table style="width:1000px" >
       <caption>Solar Cost Benefit Calculator</caption>
       <tr>
         <th>User Inputs</th>
@@ -26,53 +26,64 @@
         </td>
         <td >
           <label1 for="Solar System Size">Solar System Size&nbsp;(kW):</label1>
-          <input type="text" ng-model="data.solarSystemSize" ng-disabled="true" placeholder="Based on your consumption, but limited to what's possible on your roof (kW)">
+          <input type="text" value="{{data.solarSystemSize}}" ng-disabled="true" placeholder="kW">
+          <a target="_blank" href="#" title="Based on your consumption, but limited to what's possible on your roof (kW)"><img src="{{link}}" height="13px"/></a>
         </td>
       </tr>
       <tr>
         <td>
           <label1 for="Roof size :">Roof Size:&nbsp;</label1>
-          <input type="text" ng-model="data.roofSize" placeholder="Sq ft">
+          <input type="text" name="roofSize" ng-pattern="/^\d+$/"  ng-model="data.roofSize" placeholder="Sq ft">  
+          <span class="text-error" data-ng-show="myForm.roofSize.$invalid">Invalid</span>
         </td>
         <td>
           <label1 for="Roof size :">Solar System Cost:&nbsp;</label1>
-          <input type="text" ng-disabled="true" ng-model="data.solarSystemCost" placeholder="Based on system size">
+          <input type="text" ng-disabled="true" value="{{data.solarSystemCost}}" placeholder="Rs">
+          <a target="_blank" href="#" title="Cost Based on system size"><img src="{{link}}" height="13px"/></a>
         </td>
       </tr>
       <tr>
         <td>
           <label1>Electricity units consumed / month&nbsp;</label1>
-          <input type="text" ng-model="data.unitConsumed" placeholder="User input based on electricity bill (kWH)">
+          <input type="text" ng-pattern="/^\d+$/" ng-model="data.unitConsumed" placeholder="kWH">
+          <a target="_blank" href="#" title="User input based on electricity bill (kWH)"><img src="{{link}}" height="13px"/></a>
         </td>
         <td>
           <label1>Solar units produced / month:&nbsp;</label1>
-          <input type="text" ng-disabled="true" ng-model="data.solarUnitProduced" placeholder="based on system size & daily production">
+          <input type="text" name="solarUnitProduced" ng-pattern="/^\d+$/" ng-disabled="true" value="{{data.solarUnitProduced}}" placeholder="kW">
+          <span class="text-error" data-ng-show="myForm.solarUnitProduced.$invalid">Invalid</span>
+          <a target="_blank" href="#" title="Based on system size & daily production"><img src="{{link}}" height="13px"/></a>
         </td>
       </tr>
       <tr>
         <td>
-          <label1>Loan Tenure - 5,6 or 7 years&nbsp;</label1>
-          <input type="text" ng-model="data.loanTenure" placeholder="User input based on electricity bill (kWH)">
-        </td>
+          <label1>Loan Tenure (years)&nbsp;</label1>
+          <input type="radio" ng-model="data.loanTenure" value="5">5
+          <input type="radio" ng-model="data.loanTenure" value="6">6
+          <input type="radio" ng-model="data.loanTenure" value="7">7
+         </td>
         <td>
           <label1>Monthly savings on electricity bill:&nbsp;</label1>
-          <input type="text" ng-disabled="true" ng-model="data.monthlySavings" placeholder="based on daily solar production & tariff">
+          <input type="text" ng-disabled="true" value="{{monthlySavings && showgraph===true ? monthlySavings.toFixed(4) : undefined}}" placeholder="Rs">
+          <a target="_blank" href="#" title="Based on daily solar production & tariff"><img src="{{link}}" height="13px"/></a>
         </td>
       </tr>
       <tr>
         <td>
           <label1>Loan Amount&nbsp;</label1>
-          <input type="text" ng-model="data.loanAmount" placeholder="Max = 85% of Solar System Cost">
-          <span class="text-error" data-ng-show="showgraph===false">Invalid amount</span><br/>
+          <input type="text" ng-model="data.loanAmount" placeholder="Rs">
+          <span class="text-error" data-ng-show="showgraph===false">Maximum amount is {{0.85*data.solarSystemCost}}</span>
+          <a target="_blank" href="#" title="Maximum amount is 85% of Solar System Cost"><img src="{{link}}" height="13px"/></a>
         </td>
         <td>
           <label1>EMI:&nbsp;</label1>
-          <input type="text" ng-disabled="true" ng-model="data.EMI" placeholder="Based on Loan amount, tenure & interest rate">
+          <input type="text" ng-disabled="true" value="{{showgraph===true ? data.EMI.toFixed(4) : undefined}}" placeholder="Rs">
+          <a target="_blank" href="#" title="Based on Loan amount, tenure & interest rate"><img src="{{link}}" height="13px"/></a>
         </td>
       </tr>
     </table><br><br>
+    </form>
     <div ng-if ="showgraph" id="container">Placeholder for chart</div>
-
 </div>
 
 </body>
